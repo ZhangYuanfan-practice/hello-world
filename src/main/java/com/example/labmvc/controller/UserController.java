@@ -62,7 +62,7 @@ public class UserController {
                              @RequestParam(defaultValue = "10") int size) {
         Stream<User> stream = repo.values().stream();
         if (name != null) {
-            stream = stream.filter(u -> u.getName().contains(name));
+            stream = stream.filter(u -> u.getName() != null && u.getName().contains(name));
         }
         return stream.skip((long) page * size).limit(size).toList();
     }
